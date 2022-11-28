@@ -1,4 +1,5 @@
-﻿using System;
+﻿using banking_app.Business.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,16 @@ namespace banking_app.UI
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fullName = this.txtName.Text;
+            string email = this.txtEmail.Text;
+            int sin = Convert.ToInt32(txtSIN.Text);
+            string phone = this.txtPhone.Text;
+            string password = this.txtPass.Text;
+            MainService.getInstance().GetUserService().CreateNewUser(fullName, sin, password, email, phone);
+        }
     }
 }
+

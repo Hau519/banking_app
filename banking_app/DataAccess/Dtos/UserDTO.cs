@@ -20,8 +20,7 @@ namespace banking_app.DataAccess.Dtos
         public string FullName { get; set; }
 
         [Required]
-        [StringLength(8)]
-        public string SIN { get; set; }
+        public int SIN { get; set; }
 
         [Required]
         [StringLength(12)]
@@ -40,16 +39,17 @@ namespace banking_app.DataAccess.Dtos
 
         public List<AccountDTO> Accounts { get; set; }
 
-        public UserDTO(string fullName, string passwordHash, string email, string phoneNumber, string sin)
+        public UserDTO(string fullName, int SIN, string passwordHash, string email, string phoneNumber)
         {
             FullName = fullName;
+            SIN = SIN;
             PasswordHash = passwordHash;
             Email = email;
             PhoneNumber = phoneNumber;
-            SIN = sin;
+            
         }
 
-        public UserDTO(string fullName, string passwordHash, string email, string phoneNumber, string sin, List<AccountDTO>? accounts = null)
+        public UserDTO(string fullName, int sin, string passwordHash, string email, string phoneNumber, List<AccountDTO>? accounts = null)
         {
             this.FullName = fullName;
             this.PasswordHash = passwordHash;

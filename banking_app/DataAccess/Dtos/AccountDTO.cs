@@ -28,7 +28,7 @@ namespace banking_app.DataAccess.Dtos
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime createdTime { get; set; }
-        public List<TransactionDTO> Transactions { get; set; }
+        //public List<TransactionDTO> Transactions { get; set; }
 
         public AccountDTO(int AccountNumber, float balance, string type)
         {

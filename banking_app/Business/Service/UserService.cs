@@ -21,11 +21,9 @@ namespace banking_app.Business.Service
             this.userForm = new UserRegisterForm();
         }
 
-
-
-        public UserDTO CreateNewUser(string fullName, string passwordHash, string email, string phoneNumber, string sin)
+        public UserDTO CreateNewUser(string fullName,int sin, string passwordHash, string email, string phoneNumber)
         {
-            UserDTO newUser = new UserDTO(fullName, passwordHash, email, phoneNumber, sin);
+            UserDTO newUser = new UserDTO(fullName, sin, passwordHash, email, phoneNumber);
             this.userDAO.SaveNewUser(newUser);
             CloseUserCreationForm();
             return newUser;
