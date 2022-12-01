@@ -22,5 +22,10 @@ namespace banking_app.UI
         {
             MainService.getInstance().GetUserService().OpenUserCreationForm();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MainService.getInstance().GetUserService().OpenSignInForm();
+        }
     }
 }

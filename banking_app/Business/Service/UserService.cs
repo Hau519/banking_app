@@ -15,10 +15,14 @@ namespace banking_app.Business.Service
     {
         private UserDAO userDAO;
         private UserRegisterForm userForm;
+        private SignInForm signInForm;
+        private WelcomeForm welcomeForm;
         public UserService(ClientContext clientContext)
         {
             this.userDAO = new UserDAO(clientContext);
             this.userForm = new UserRegisterForm();
+            this.signInForm = new SignInForm();
+            this.welcomeForm = new WelcomeForm();
         }
 
         public UserDTO CreateNewUser(string fullName,int sin, string passwordHash, string email, string phoneNumber)
@@ -26,8 +30,34 @@ namespace banking_app.Business.Service
             UserDTO newUser = new UserDTO(fullName, sin, passwordHash, email, phoneNumber);
             this.userDAO.SaveNewUser(newUser);
             CloseUserCreationForm();
+            MessageBox.Show("you have successully register!");
             return newUser;
 
+        }
+
+        public Boolean CheckEmailExist(string email)
+        {
+            if (this.userDAO.GetAll(email).Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void CheckLogIn(string Email, string Password)
+        {
+
+            if (this.userDAO.GetLogIn(email: Email, PasswordHash: Password) == null)
+            {
+                MessageBox.Show("Email or password is not correct!");
+            } else
+            {
+                CloseSignInForm();
+                OpenWelcomeForm();
+            }
         }
 
         public void OpenUserCreationForm()
@@ -38,6 +68,26 @@ namespace banking_app.Business.Service
         public void CloseUserCreationForm()
         {
             this.userForm.DialogResult = DialogResult.Cancel;
+        }
+
+        public void OpenSignInForm()
+        {
+            this.signInForm.ShowDialog();
+        }
+
+        public void CloseSignInForm()
+        {
+            this.signInForm.DialogResult = DialogResult.Cancel;
+        }
+
+        public void OpenWelcomeForm()
+        {
+            this.welcomeForm.ShowDialog();
+        }
+
+        public void CloseWelcomeForm()
+        {
+            this.welcomeForm.DialogResult = DialogResult.Cancel;
         }
     }
 }

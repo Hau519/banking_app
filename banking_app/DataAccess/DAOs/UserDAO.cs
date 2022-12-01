@@ -21,10 +21,28 @@ namespace banking_app.DataAccess.DAOs
         public UserDTO GetById(int id)
         {
             return this.clientContext.Users.Where(user => user.ID == id).Single();
-
         }
 
-        // dont need to getall list, or save new client or delete of clients (this is in the bank context which is not in the scope of our project)
+        public List<UserDTO> GetAll(string email)
+        {
+            return this.clientContext.Users.Where(user => user.Email == email).ToList();
+        }
+
+        public UserDTO? GetLogIn(string email, string PasswordHash)
+        {
+            List<UserDTO> userList = GetAll(email);
+            foreach (UserDTO user in userList)
+            {
+                if(user.PasswordHash == PasswordHash)
+                {
+                    return user;
+                }
+            }
+            return null;
+            
+        }
+
+      
         public void SaveNewUser(UserDTO newUser)
         { 
             this.clientContext.Users.Add(newUser);

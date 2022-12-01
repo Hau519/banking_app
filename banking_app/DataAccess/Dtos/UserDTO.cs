@@ -42,7 +42,7 @@ namespace banking_app.DataAccess.Dtos
         public UserDTO(string fullName, int SIN, string passwordHash, string email, string phoneNumber)
         {
             FullName = fullName;
-            SIN = SIN;
+            this.SIN = SIN;
             PasswordHash = passwordHash;
             Email = email;
             PhoneNumber = phoneNumber;
