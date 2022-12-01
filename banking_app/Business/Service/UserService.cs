@@ -17,6 +17,7 @@ namespace banking_app.Business.Service
         private UserRegisterForm userForm;
         private SignInForm signInForm;
         private WelcomeForm welcomeForm;
+
         public UserService(ClientContext clientContext)
         {
             this.userDAO = new UserDAO(clientContext);
@@ -37,7 +38,7 @@ namespace banking_app.Business.Service
 
         public Boolean CheckEmailExist(string email)
         {
-            if (this.userDAO.GetAll(email).Count == 0)
+            if (this.userDAO.GetByEmail(email) == null)
             {
                 return true;
             }
@@ -56,7 +57,9 @@ namespace banking_app.Business.Service
             } else
             {
                 CloseSignInForm();
+                this.welcomeForm.FillData(userDAO.GetByEmail(Email));
                 OpenWelcomeForm();
+
             }
         }
 
@@ -89,5 +92,7 @@ namespace banking_app.Business.Service
         {
             this.welcomeForm.DialogResult = DialogResult.Cancel;
         }
+
+      
     }
 }

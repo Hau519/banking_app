@@ -23,17 +23,30 @@ namespace banking_app.DataAccess.DAOs
             return this.clientContext.Users.Where(user => user.ID == id).Single();
         }
 
-        public List<UserDTO> GetAll(string email)
+        public List<UserDTO> GetAll()
         {
-            return this.clientContext.Users.Where(user => user.Email == email).ToList();
+            return this.clientContext.Users.ToList();
+        }
+
+        public UserDTO? GetByEmail(string email)
+        {
+            List<UserDTO> userList = GetAll();
+            foreach (UserDTO user in userList)
+            {
+                if (user.Email == email)
+                {
+                    return user;
+                }
+            }
+            return null;
         }
 
         public UserDTO? GetLogIn(string email, string PasswordHash)
         {
-            List<UserDTO> userList = GetAll(email);
+            List<UserDTO> userList = GetAll();
             foreach (UserDTO user in userList)
             {
-                if(user.PasswordHash == PasswordHash)
+                if(user.PasswordHash == PasswordHash && user.Email == email)
                 {
                     return user;
                 }
