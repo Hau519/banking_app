@@ -19,19 +19,25 @@ namespace banking_app.UI
             InitializeComponent();
         }
 
+        public static int USERID = 0;
+
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Please enter email and password to login");
+            }
+            else
+            {
+                string email = this.txtEmail.Text;
+                string password = this.txtPassword.Text;
+                USERID = MainService.getInstance().GetUserService().getUserIdByEmail(email);
+                MainService.getInstance().GetUserService().CheckLogIn(email, password);
+            }
+
             try
             {   
-                if(string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
-                {
-                    MessageBox.Show("Please enter email and password to login");
-                } else
-                {
-                    string email = this.txtEmail.Text;
-                    string password = this.txtPassword.Text;
-                    MainService.getInstance().GetUserService().CheckLogIn(email, password);
-                }
+                
                 
        
             } catch(Exception ex)

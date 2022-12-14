@@ -94,6 +94,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(248, 31);
             this.txtName.TabIndex = 5;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtPhone
             // 
@@ -101,6 +102,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(248, 31);
             this.txtPhone.TabIndex = 6;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // txtPass
             // 
@@ -122,6 +124,7 @@
             this.txtSIN.Name = "txtSIN";
             this.txtSIN.Size = new System.Drawing.Size(248, 31);
             this.txtSIN.TabIndex = 9;
+            this.txtSIN.TextChanged += new System.EventHandler(this.txtSIN_TextChanged);
             // 
             // button1
             // 

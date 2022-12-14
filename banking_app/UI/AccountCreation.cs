@@ -1,4 +1,6 @@
-﻿using System;
+﻿using banking_app.Business.Service;
+using banking_app.DataAccess.Dtos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +22,16 @@ namespace banking_app.UI
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            string accountType = (string) comboBoxAccType.Text;
+            int userId = SignInForm.USERID;
+            AccountDTO newAccount = new AccountDTO(accountType, userId);
+            MainService.getInstance().GetAccountService().saveNewAccount(newAccount);
+            this.DialogResult = DialogResult.OK;
+            
         }
     }
 }

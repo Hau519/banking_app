@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace banking_app.DataAccess.DAOs
 {
-    public class AccountDAO : IDao
+    public class AccountDAO 
     {
-        private ClientContext clientContext;
+        private ProjectContext clientContext;
 
-        public AccountDAO(ClientContext clientContext)
+        public AccountDAO(ProjectContext clientContext)
         {
-            clientContext ??= new ClientContext();
+            clientContext ??= new ProjectContext();
             this.clientContext = clientContext;
         }
 
@@ -26,9 +26,26 @@ namespace banking_app.DataAccess.DAOs
             return this.clientContext.Accounts.Where(account => account.AccountNumber == accountNumber).Single();
         }
 
+
         public List<AccountDTO> GetAll()
         {
+
             return this.clientContext.Accounts.ToList();
+        }
+
+        public List<AccountDTO> GetByUserId(int id)
+        {
+            List <AccountDTO> allAccount = this.GetAll();
+            List <AccountDTO> accountListByID = new List <AccountDTO>();
+
+            foreach (AccountDTO account in allAccount)
+            {
+                if (account.UserID == id)
+                {
+                    accountListByID.Add(account);
+                }
+            }
+            return accountListByID;
         }
 
         public AccountDTO Create(AccountDTO newAccount)

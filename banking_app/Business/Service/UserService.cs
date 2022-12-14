@@ -18,12 +18,23 @@ namespace banking_app.Business.Service
         private SignInForm signInForm;
         private WelcomeForm welcomeForm;
 
-        public UserService(ClientContext clientContext)
+        public UserService(ProjectContext clientContext)
         {
             this.userDAO = new UserDAO(clientContext);
             this.userForm = new UserRegisterForm();
             this.signInForm = new SignInForm();
             this.welcomeForm = new WelcomeForm();
+        }
+
+        public UserDTO getUserById(int id)
+        {
+            UserDTO user = this.userDAO.GetById(id);
+            return user;
+        }
+
+        public int getUserIdByEmail(String email)
+        {
+            return this.userDAO.GetUserIdFromEmail(email);
         }
 
         public UserDTO CreateNewUser(string fullName,int sin, string passwordHash, string email, string phoneNumber)
@@ -34,6 +45,16 @@ namespace banking_app.Business.Service
             MessageBox.Show("you have successully register!");
             return newUser;
 
+        }
+
+        public void UpdateUser(UserDTO user, string fullName, int sin, string email, string phoneNumber)
+        {
+            user.SIN = sin;
+            user.FullName = fullName;
+            user.Email = email;
+            user.PhoneNumber = phoneNumber;
+            this.userDAO.SaveModification(user);
+            MessageBox.Show("You have successfully update your information");
         }
 
         public Boolean CheckEmailExist(string email)
@@ -85,7 +106,12 @@ namespace banking_app.Business.Service
 
         public void OpenWelcomeForm()
         {
-            this.welcomeForm.ShowDialog();
+            if(this.welcomeForm != null)
+            {
+                this.welcomeForm.Show();
+            }
+           
+
         }
 
         public void CloseWelcomeForm()

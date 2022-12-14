@@ -28,54 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtAccountNum = new System.Windows.Forms.TextBox();
-            this.txtUserId = new System.Windows.Forms.TextBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.btnCreateAccount = new System.Windows.Forms.Button();
+            this.comboBoxAccType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(235, 108);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Account number: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(235, 153);
+            this.label2.Location = new System.Drawing.Point(317, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 25);
+            this.label2.Size = new System.Drawing.Size(128, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "UserId: ";
+            this.label2.Text = "Account Type: ";
             // 
-            // txtAccountNum
+            // btnAddUser
             // 
-            this.txtAccountNum.Location = new System.Drawing.Point(394, 102);
-            this.txtAccountNum.Name = "txtAccountNum";
-            this.txtAccountNum.Size = new System.Drawing.Size(177, 31);
-            this.txtAccountNum.TabIndex = 2;
+            this.btnAddUser.Location = new System.Drawing.Point(358, 184);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(134, 44);
+            this.btnAddUser.TabIndex = 4;
+            this.btnAddUser.Text = "Add user";
+            this.btnAddUser.UseVisualStyleBackColor = true;
             // 
-            // txtUserId
+            // btnCreateAccount
             // 
-            this.txtUserId.Location = new System.Drawing.Point(394, 153);
-            this.txtUserId.Name = "txtUserId";
-            this.txtUserId.Size = new System.Drawing.Size(177, 31);
-            this.txtUserId.TabIndex = 3;
+            this.btnCreateAccount.Location = new System.Drawing.Point(547, 184);
+            this.btnCreateAccount.Name = "btnCreateAccount";
+            this.btnCreateAccount.Size = new System.Drawing.Size(134, 44);
+            this.btnCreateAccount.TabIndex = 5;
+            this.btnCreateAccount.Text = "Create account";
+            this.btnCreateAccount.UseVisualStyleBackColor = true;
+            this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
+            // 
+            // comboBoxAccType
+            // 
+            this.comboBoxAccType.FormattingEnabled = true;
+            this.comboBoxAccType.Items.AddRange(new object[] {
+            "Checking",
+            "Saving"});
+            this.comboBoxAccType.Location = new System.Drawing.Point(451, 93);
+            this.comboBoxAccType.Name = "comboBoxAccType";
+            this.comboBoxAccType.Size = new System.Drawing.Size(254, 33);
+            this.comboBoxAccType.TabIndex = 6;
             // 
             // AccountCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1545, 733);
-            this.Controls.Add(this.txtUserId);
-            this.Controls.Add(this.txtAccountNum);
+            this.Controls.Add(this.comboBoxAccType);
+            this.Controls.Add(this.btnCreateAccount);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "AccountCreation";
             this.Text = "AccountCreation";
             this.ResumeLayout(false);
@@ -84,10 +90,9 @@
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
-        private TextBox txtAccountNum;
-        private TextBox txtUserId;
+        private Button btnAddUser;
+        private Button btnCreateAccount;
+        private ComboBox comboBoxAccType;
     }
 }

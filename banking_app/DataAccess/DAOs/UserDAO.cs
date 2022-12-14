@@ -10,10 +10,10 @@ namespace banking_app.DataAccess.DAOs
 {
     public class UserDAO
     {
-        private ClientContext clientContext;
-        public UserDAO(ClientContext clientContext)
+        private ProjectContext clientContext;
+        public UserDAO(ProjectContext clientContext)
         {
-            clientContext ??= new ClientContext();
+            clientContext ??= new ProjectContext();
             this.clientContext = clientContext;
         }
 
@@ -21,6 +21,19 @@ namespace banking_app.DataAccess.DAOs
         public UserDTO GetById(int id)
         {
             return this.clientContext.Users.Where(user => user.ID == id).Single();
+        }
+
+        public int GetUserIdFromEmail(string email)
+        {
+            UserDTO user = GetByEmail(email);
+            if (user == null)
+            {
+                return 0;
+            } else
+            {
+                return user.ID;
+            }
+            
         }
 
         public List<UserDTO> GetAll()
@@ -60,6 +73,13 @@ namespace banking_app.DataAccess.DAOs
         { 
             this.clientContext.Users.Add(newUser);
             this.clientContext.SaveChanges();
+        }
+
+        public void SaveModification(UserDTO user)
+        {
+            this.clientContext.Users.Update(user);
+            this.clientContext.SaveChanges();
+
         }
 
         public void DeleteUser(UserDTO user)

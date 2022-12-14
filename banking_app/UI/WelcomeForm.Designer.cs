@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -44,8 +42,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.createNewAccount = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.accountCombo = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.movieIdValueLable = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txtAccNumber = new System.Windows.Forms.TextBox();
+            this.txtAccType = new System.Windows.Forms.TextBox();
+            this.txtBalance = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -57,24 +70,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Welcome back!!!";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(382, 166);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 62);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Your profile";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(988, 156);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 62);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Your accounts";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // txtDate
             // 
@@ -115,7 +110,6 @@
             this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(229, 31);
             this.txtName.TabIndex = 16;
-            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // label6
             // 
@@ -178,14 +172,15 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // createNewAccount
             // 
-            this.button4.Location = new System.Drawing.Point(1002, 580);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(186, 48);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "Create new account";
-            this.button4.UseVisualStyleBackColor = true;
+            this.createNewAccount.Location = new System.Drawing.Point(1142, 489);
+            this.createNewAccount.Name = "createNewAccount";
+            this.createNewAccount.Size = new System.Drawing.Size(186, 48);
+            this.createNewAccount.TabIndex = 22;
+            this.createNewAccount.Text = "Create new account";
+            this.createNewAccount.UseVisualStyleBackColor = true;
+            this.createNewAccount.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -197,13 +192,157 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(323, 226);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 25);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "ID: ";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(467, 223);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(229, 31);
+            this.txtID.TabIndex = 25;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(379, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(201, 25);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Your profile information";
+            // 
+            // accountCombo
+            // 
+            this.accountCombo.FormattingEnabled = true;
+            this.accountCombo.Location = new System.Drawing.Point(1142, 157);
+            this.accountCombo.Name = "accountCombo";
+            this.accountCombo.Size = new System.Drawing.Size(182, 33);
+            this.accountCombo.TabIndex = 27;
+            this.accountCombo.SelectedIndexChanged += new System.EventHandler(this.accountCombo_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(991, 157);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(126, 25);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Your accounts:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(949, 223);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 25);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "ID: ";
+            // 
+            // movieIdValueLable
+            // 
+            this.movieIdValueLable.AutoSize = true;
+            this.movieIdValueLable.Location = new System.Drawing.Point(1013, 223);
+            this.movieIdValueLable.Name = "movieIdValueLable";
+            this.movieIdValueLable.Size = new System.Drawing.Size(104, 25);
+            this.movieIdValueLable.TabIndex = 29;
+            this.movieIdValueLable.Text = "placeholder";
+            this.movieIdValueLable.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(832, 275);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(156, 25);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Account Number: ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(852, 349);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(123, 25);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "Account Type:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(900, 416);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(75, 25);
+            this.label13.TabIndex = 32;
+            this.label13.Text = "Balance:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(890, 489);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(186, 48);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "Transactions";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1386, 489);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(186, 48);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "Delete this account";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // txtAccNumber
+            // 
+            this.txtAccNumber.Location = new System.Drawing.Point(1012, 275);
+            this.txtAccNumber.Name = "txtAccNumber";
+            this.txtAccNumber.Size = new System.Drawing.Size(216, 31);
+            this.txtAccNumber.TabIndex = 35;
+            // 
+            // txtAccType
+            // 
+            this.txtAccType.Location = new System.Drawing.Point(1013, 343);
+            this.txtAccType.Name = "txtAccType";
+            this.txtAccType.Size = new System.Drawing.Size(216, 31);
+            this.txtAccType.TabIndex = 36;
+            // 
+            // txtBalance
+            // 
+            this.txtBalance.Location = new System.Drawing.Point(1013, 413);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(216, 31);
+            this.txtBalance.TabIndex = 37;
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1633, 825);
+            this.Controls.Add(this.txtBalance);
+            this.Controls.Add(this.txtAccType);
+            this.Controls.Add(this.txtAccNumber);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.movieIdValueLable);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.accountCombo);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.createNewAccount);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.txtDate);
             this.Controls.Add(this.txtPhone);
@@ -215,11 +354,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "WelcomeForm";
             this.Text = "WelcomeForm";
+            this.Load += new System.EventHandler(this.WelcomeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,8 +366,6 @@
         #endregion
 
         private Label label1;
-        private Button button1;
-        private Button button2;
         private TextBox txtDate;
         private TextBox txtPhone;
         private TextBox txtEmail;
@@ -242,7 +378,22 @@
         private Label label2;
         private ContextMenuStrip contextMenuStrip1;
         private Button button3;
-        private Button button4;
+        private Button createNewAccount;
         private Button button5;
+        private Label label7;
+        private TextBox txtID;
+        private Label label8;
+        private ComboBox accountCombo;
+        private Label label9;
+        private Label label10;
+        private Label movieIdValueLable;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Button button1;
+        private Button button2;
+        private TextBox txtAccNumber;
+        private TextBox txtAccType;
+        private TextBox txtBalance;
     }
 }

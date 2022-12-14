@@ -11,14 +11,16 @@ namespace banking_app.Business.Service
     public class MainService
     {
         //central point
-        private ClientContext clientContext;
+        private ProjectContext clientContext;
         private UserService userService;
+        private AccountService accountService;
         private static MainService INSTANCE = null;
         protected MainService()
         {
 
-            this.clientContext = new ClientContext();
+            this.clientContext = new ProjectContext();
             this.userService = new UserService(this.clientContext);
+            this.accountService = new AccountService(this.clientContext);
 
         }
 
@@ -35,6 +37,11 @@ namespace banking_app.Business.Service
         public UserService GetUserService()
         {
             return this.userService;
+        }
+
+        public AccountService GetAccountService()
+        {
+            return this.accountService;
         }
 
         public void OpenMainWindow()

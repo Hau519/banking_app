@@ -10,33 +10,50 @@ using System.Threading.Tasks;
 namespace banking_app.DataAccess.Dtos
 {
 
-    [Table("account")]
+    [Table("Accounts")]
     public class AccountDTO: IDto
     {
         [Key]
         public int AccountNumber { get; set; }
 
-        [required]
-        public float balance { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string AccountType { get; set; }
 
         [Required]
-        [StringLength(64)]
-        public string accountType { get; set; }
+        public int UserID { get; set; }
 
-        [ForeignKey("UserId")]
-        public UserDTO User { get; set; }
+        [required]
+        public double Balance { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime createdTime { get; set; }
-        //public List<TransactionDTO> Transactions { get; set; }
+        [ForeignKey("UserID")]
+        public UserDTO User { get; set; } = null!;
 
-        public AccountDTO(int AccountNumber, float balance, string type)
+       // public List<TransactionDTO> Transactions { get; set; }
+
+        public AccountDTO(string AccountType, int UserID)
         {
-            this.AccountNumber = AccountNumber;
-            this.balance = balance;
-            this.accountType = type;
+            this.AccountType = AccountType;
+            this.UserID = UserID;
         }
 
-        public AccountDTO() { }
+        public AccountDTO(int AccountNumber, string AccountType, int UserID, float Balance) 
+        {
+            this.AccountNumber = AccountNumber;
+            this.AccountType = AccountType;
+            this.UserID = UserID;
+            this.Balance = Balance;
+        }
+
+       /* public AccountDTO(int accountNumber, string accountType, UserDTO user, float balance, List<TransactionDTO> Transactions)
+        {
+            this.AccountNumber = accountNumber;
+            this.AccountType = accountType;
+            this.UserID = user.getId();
+            this.Balance = balance;
+            this.Transactions = Transactions;
+        }*/
+
+       
     }
 }
