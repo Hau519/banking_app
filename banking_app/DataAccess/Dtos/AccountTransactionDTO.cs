@@ -1,5 +1,4 @@
-﻿using banking_app.DataAccess.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace banking_app.DataAccess.Dtos
 {
-    public class CurrencyDTO: IDto
+    public class AccountTransactionDTO
     {
+
     }
 }

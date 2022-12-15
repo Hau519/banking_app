@@ -32,6 +32,11 @@ namespace banking_app.Business.Service
             return user;
         }
 
+        public List<UserDTO> GetAllUsers()
+        {
+            return this.userDAO.GetAll();
+        }
+
         public int getUserIdByEmail(String email)
         {
             return this.userDAO.GetUserIdFromEmail(email);

@@ -14,21 +14,21 @@ namespace banking_app.DataAccess.Dtos
         [Key]
         public int Id { get; set; }
 
-        [required]
+        [Required]
         public int UserId { get; set; }
 
         [required]
         public int AccountNumber { get; set; }
 
         [ForeignKey("AccountNumber")]
-        public AccountDTO Account { get; set; } = null!;
+        public AccountDTO Account { get; set; }
 
-        [ForeignKey("UserID")]
-        public UserDTO User { get; set; } = null!;
+        [ForeignKey("UserId")]
+        public UserDTO User { get; set; } 
 
-        public UserAccountDTO(int userID, int accountNumber)
+        public UserAccountDTO(int userId, int accountNumber)
         {
-            this.UserId = userID;
+            this.UserId = userId;
             this.AccountNumber = accountNumber;
         }
 

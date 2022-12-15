@@ -33,20 +33,6 @@ namespace banking_app.DataAccess.DAOs
             return this.clientContext.Accounts.ToList();
         }
 
-        public List<AccountDTO> GetByUserId(int id)
-        {
-            List <AccountDTO> allAccount = this.GetAll();
-            List <AccountDTO> accountListByID = new List <AccountDTO>();
-
-            foreach (AccountDTO account in allAccount)
-            {
-                if (account.UserID == id)
-                {
-                    accountListByID.Add(account);
-                }
-            }
-            return accountListByID;
-        }
 
         public AccountDTO Create(AccountDTO newAccount)
         {

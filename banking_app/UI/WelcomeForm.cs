@@ -81,12 +81,17 @@ namespace banking_app.UI
        
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
-            List<AccountDTO> accountList = MainService.getInstance().GetAccountService().getAccountByUserId(SignInForm.USERID);
+            LoadAccountToCombo();
+            
+        }
+
+        private void LoadAccountToCombo()
+        {
+            List<AccountDTO> accountList = MainService.getInstance().GetUserAccountService().getAllAccountOfUser(SignInForm.USERID);
             foreach (AccountDTO account in accountList)
             {
                 accountCombo.Items.Add(account.AccountNumber);
             }
-            
         }
 
         private void LoadAccountFields(AccountDTO account)
@@ -109,7 +114,8 @@ namespace banking_app.UI
             this.accountCreation.ShowDialog();
             if(this.accountCreation.DialogResult == DialogResult.OK)
             {
-
+                this.accountCombo.Items.Clear();
+                LoadAccountToCombo();
             }
         }
     }

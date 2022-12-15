@@ -37,7 +37,6 @@ namespace banking_app.DataAccess.Dtos
         [StringLength(15)]
         public string PhoneNumber { get; set; }
 
-        public List<AccountDTO> Accounts { get; set; }
 
         public UserDTO(string fullName, int SIN, string passwordHash, string email, string phoneNumber)
         {
@@ -56,7 +55,7 @@ namespace banking_app.DataAccess.Dtos
             this.Email = email;
             this.PhoneNumber = phoneNumber;
             this.SIN =sin;
-            this.Accounts = accounts ?? new List<AccountDTO>();
+        
         }
 
         public int getId()

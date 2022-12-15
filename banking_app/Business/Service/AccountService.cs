@@ -19,11 +19,6 @@ namespace banking_app.Business.Service
             this.accountDAO = new AccountDAO(dbContext);
         }
 
-        public List<AccountDTO> getAccountByUserId(int userId)
-        {
-            return this.accountDAO.GetByUserId(userId);
-        }
-
         public AccountDTO getAccountByAccountNumber(int accountNumber)
         {
             return this.accountDAO.GetByAccountNumber(accountNumber);

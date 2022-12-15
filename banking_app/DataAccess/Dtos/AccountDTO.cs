@@ -20,28 +20,20 @@ namespace banking_app.DataAccess.Dtos
         [StringLength(10)]
         public string AccountType { get; set; }
 
-        [Required]
-        public int UserID { get; set; }
-
         [required]
         public double Balance { get; set; }
 
-        [ForeignKey("UserID")]
-        public UserDTO User { get; set; } = null!;
+        public List<UserAccountDTO> userAccount { get; set; } = null;
 
-       // public List<TransactionDTO> Transactions { get; set; }
-
-        public AccountDTO(string AccountType, int UserID)
+        public AccountDTO(string AccountType)
         {
             this.AccountType = AccountType;
-            this.UserID = UserID;
         }
 
-        public AccountDTO(int AccountNumber, string AccountType, int UserID, float Balance) 
+        public AccountDTO(int AccountNumber, string AccountType, float Balance) 
         {
             this.AccountNumber = AccountNumber;
             this.AccountType = AccountType;
-            this.UserID = UserID;
             this.Balance = Balance;
         }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace banking_app.DataAccess.DAOs
 {
-    public class UserAccountDAO : IDao
+    public class UserAccountDAO
     {
         private ProjectContext context;
 
@@ -19,10 +19,20 @@ namespace banking_app.DataAccess.DAOs
             this.context = context;
         }
 
-        public List<AccountDTO> GetAccountOfAnUser(int UserID)
+        public List<UserAccountDTO> GetAll()
+        {
+            return this.context.UserAccounts.ToList();
+        }
+
+        public UserAccountDTO GetById(int id)
+        {
+            return this.context.UserAccounts.Where(userAccount => userAccount.Id == id).Single();
+        }
+
+        public List<AccountDTO> GetAccountOfAnUser(int userId)
         {
             List<UserAccountDTO> userAccounts = this.context.UserAccounts
-                .Where(userAccount => userAccount.UserId == UserID)
+                .Where(userAccount => userAccount.UserId == userId)
                 .Include(userAccount => userAccount.Account)
                 .ToList();
 
@@ -48,6 +58,36 @@ namespace banking_app.DataAccess.DAOs
             }
             return users;
         }
+
+        public UserAccountDTO Create(UserAccountDTO newUserAccount)
+        {
+            this.context.UserAccounts.Add(newUserAccount);
+            this.context.SaveChanges();
+            return newUserAccount;
+        }
+
+        public UserAccountDTO GetByUserAndAccountNumber(int userId, int accountNumber)
+        {
+            return this.context.UserAccounts
+                .Where(userAccount => userAccount.AccountNumber == accountNumber && userAccount.UserId == userId)
+                .Single();
+        }
+
+        public UserAccountDTO Update(UserAccountDTO userAccount)
+        {
+            this.context.UserAccounts.Update(userAccount);
+            this.context.SaveChanges();
+            return userAccount;
+        }
+
+        public UserAccountDTO Delete(UserAccountDTO userAccount)
+        {
+            this.context.UserAccounts.Remove(userAccount);
+            this.context.SaveChanges();
+            return userAccount;
+        }
+
+       
         
     }
 }
