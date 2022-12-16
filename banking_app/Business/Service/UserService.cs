@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Contexts;
+﻿// Paragini Bamania
+
+using banking_app.DataAccess.Contexts;
 using banking_app.DataAccess.DAOs;
 using banking_app.DataAccess.Dtos;
 using banking_app.Service.Interfaces;
@@ -52,6 +54,11 @@ namespace banking_app.Business.Service
 
         }
 
+        public void DeleteUser(UserDTO user)
+        {
+            this.userDAO.DeleteUser(user);
+        }
+
         public void UpdateUser(UserDTO user, string fullName, int sin, string email, string phoneNumber)
         {
             user.SIN = sin;
@@ -102,26 +109,17 @@ namespace banking_app.Business.Service
         public void OpenSignInForm()
         {
             this.signInForm.ShowDialog();
+            
         }
 
         public void CloseSignInForm()
         {
-            this.signInForm.DialogResult = DialogResult.Cancel;
+            this.signInForm.Close();
         }
 
         public void OpenWelcomeForm()
         {
-            if(this.welcomeForm != null)
-            {
-                this.welcomeForm.Show();
-            }
-           
-
-        }
-
-        public void CloseWelcomeForm()
-        {
-            this.welcomeForm.DialogResult = DialogResult.Cancel;
+            this.welcomeForm.ShowDialog();
         }
 
       

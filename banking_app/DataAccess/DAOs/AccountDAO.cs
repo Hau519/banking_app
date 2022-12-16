@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Contexts;
+﻿//Hyemi Park
+
+using banking_app.DataAccess.Contexts;
 using banking_app.DataAccess.Dtos;
 using banking_app.DataAccess;
 using banking_app.DataAccess.Interfaces;
@@ -41,8 +43,9 @@ namespace banking_app.DataAccess.DAOs
             return newAccount;
         }
 
-        public void SaveModification()
+        public void SaveModification(AccountDTO account)
         {
+            this.clientContext.Accounts.Update(account);
             this.clientContext.SaveChanges();
         }
 

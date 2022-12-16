@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Yulia Samoilovich
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,9 @@ namespace banking_app.DataAccess.Contexts
         public DbSet<UserDTO> Users { get; set; }
 
         public DbSet<UserAccountDTO> UserAccounts { get; set; }
+
+        public DbSet<TransactionDTO> Transactions { get; set; }
+        public DbSet<AccountTransactionDTO> AccountTransactions { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

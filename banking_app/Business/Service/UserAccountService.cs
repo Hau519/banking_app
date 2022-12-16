@@ -1,4 +1,5 @@
-﻿using banking_app.DataAccess.Contexts;
+﻿//Thi Hau Vu
+using banking_app.DataAccess.Contexts;
 using banking_app.DataAccess.DAOs;
 using banking_app.DataAccess.Dtos;
 using System;
@@ -56,6 +57,7 @@ namespace banking_app.Business.Service
             foreach (AccountDTO account in accountOfUser)
             {
                 UserAccountDTO userAccountToDelete = this.userAccountDAO.GetByUserAndAccountNumber(userId, account.AccountNumber);
+                this.userAccountDAO.Delete(userAccountToDelete);
             }
         }
 

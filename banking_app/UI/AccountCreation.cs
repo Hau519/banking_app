@@ -1,4 +1,6 @@
-﻿using banking_app.Business.Service;
+﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
+
+using banking_app.Business.Service;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -74,6 +76,11 @@ namespace banking_app.UI
                     }
                 }
             }
+        }
+
+        private void comboBoxAccType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

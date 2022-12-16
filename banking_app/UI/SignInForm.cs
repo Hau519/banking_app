@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,6 +47,11 @@ namespace banking_app.UI
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private void SignInForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

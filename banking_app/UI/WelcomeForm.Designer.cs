@@ -54,11 +54,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnTransaction = new System.Windows.Forms.Button();
+            this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.txtAccNumber = new System.Windows.Forms.TextBox();
             this.txtAccType = new System.Windows.Forms.TextBox();
             this.txtBalance = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -164,7 +166,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(282, 592);
+            this.button3.Location = new System.Drawing.Point(127, 592);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(165, 48);
             this.button3.TabIndex = 21;
@@ -184,7 +186,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(531, 592);
+            this.button5.Location = new System.Drawing.Point(323, 592);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(165, 48);
             this.button5.TabIndex = 23;
@@ -282,23 +284,25 @@
             this.label13.TabIndex = 32;
             this.label13.Text = "Balance:";
             // 
-            // button1
+            // btnTransaction
             // 
-            this.button1.Location = new System.Drawing.Point(890, 489);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 48);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Transactions";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTransaction.Location = new System.Drawing.Point(886, 489);
+            this.btnTransaction.Name = "btnTransaction";
+            this.btnTransaction.Size = new System.Drawing.Size(186, 48);
+            this.btnTransaction.TabIndex = 33;
+            this.btnTransaction.Text = "Transactions";
+            this.btnTransaction.UseVisualStyleBackColor = true;
+            this.btnTransaction.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnDeleteAccount
             // 
-            this.button2.Location = new System.Drawing.Point(1386, 489);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 48);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Delete this account";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Location = new System.Drawing.Point(1386, 489);
+            this.btnDeleteAccount.Name = "btnDeleteAccount";
+            this.btnDeleteAccount.Size = new System.Drawing.Size(186, 48);
+            this.btnDeleteAccount.TabIndex = 34;
+            this.btnDeleteAccount.Text = "Delete this account";
+            this.btnDeleteAccount.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtAccNumber
             // 
@@ -321,16 +325,38 @@
             this.txtBalance.Size = new System.Drawing.Size(216, 31);
             this.txtBalance.TabIndex = 37;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(528, 592);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(186, 48);
+            this.button4.TabIndex = 38;
+            this.button4.Text = "Delete user account";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Location = new System.Drawing.Point(675, 716);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(259, 58);
+            this.btnLogOut.TabIndex = 39;
+            this.btnLogOut.Text = "Log out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1633, 825);
+            this.Controls.Add(this.btnLogOut);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.txtAccType);
             this.Controls.Add(this.txtAccNumber);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDeleteAccount);
+            this.Controls.Add(this.btnTransaction);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -390,10 +416,12 @@
         private Label label11;
         private Label label12;
         private Label label13;
-        private Button button1;
-        private Button button2;
+        private Button btnTransaction;
+        private Button btnDeleteAccount;
         private TextBox txtAccNumber;
         private TextBox txtAccType;
         private TextBox txtBalance;
+        private Button button4;
+        private Button btnLogOut;
     }
 }

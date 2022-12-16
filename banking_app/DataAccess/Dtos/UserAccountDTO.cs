@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Thi Hau Vu
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,7 +19,7 @@ namespace banking_app.DataAccess.Dtos
         [Required]
         public int UserId { get; set; }
 
-        [required]
+        [Required]
         public int AccountNumber { get; set; }
 
         [ForeignKey("AccountNumber")]

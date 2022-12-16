@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Contexts;
+﻿// Paragini Bamania
+
+using banking_app.DataAccess.Contexts;
 using banking_app.UI;
 using System;
 using System.Collections.Generic;
@@ -10,11 +12,12 @@ namespace banking_app.Business.Service
 {
     public class MainService
     {
-        //central point
         private ProjectContext clientContext;
         private UserService userService;
         private AccountService accountService;
         private UserAccountService userAccountService;
+        private TransactionService transactionService;
+        private AccountTransactionService accountTransactionService;
         private static MainService INSTANCE = null;
         protected MainService()
         {
@@ -23,6 +26,8 @@ namespace banking_app.Business.Service
             this.userService = new UserService(this.clientContext);
             this.accountService = new AccountService(this.clientContext);
             this.userAccountService = new UserAccountService(this.clientContext);
+            this.transactionService = new TransactionService(this.clientContext);
+            this.accountTransactionService = new AccountTransactionService(this.clientContext);
 
         }
 
@@ -51,6 +56,15 @@ namespace banking_app.Business.Service
             return this.userAccountService;
         }
 
+        public TransactionService GetTransactionService()
+        {
+            return this.transactionService;
+        }
+
+        public AccountTransactionService GetAccountTransactionService()
+        {
+            return this.accountTransactionService;
+        }
         public void OpenMainWindow()
         {
             

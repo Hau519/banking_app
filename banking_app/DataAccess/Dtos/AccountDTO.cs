@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Interfaces;
+﻿//Hyemi Park
+
+using banking_app.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +26,8 @@ namespace banking_app.DataAccess.Dtos
         public double Balance { get; set; }
 
         public List<UserAccountDTO> userAccount { get; set; } = null;
+
+        public List<AccountTransactionDTO> accountTransaction { get; set; } = null;
 
         public AccountDTO(string AccountType)
         {

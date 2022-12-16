@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Contexts;
+﻿// Paragini Bamania
+
+using banking_app.DataAccess.Contexts;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -84,7 +86,7 @@ namespace banking_app.DataAccess.DAOs
 
         public void DeleteUser(UserDTO user)
         {
-            this.clientContext.Users.Add(user);
+            this.clientContext.Users.Remove(user);
             this.clientContext.SaveChanges();
         }
 

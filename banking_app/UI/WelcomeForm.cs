@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Dtos;
+﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
+
+using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +18,10 @@ namespace banking_app.UI
     public partial class WelcomeForm : Form
     {
         private AccountCreation accountCreation;
+        private TransactionView transactionView;
         private AccountDTO currentWorkingAccount;
+
+        public static int ACCOUNTNUMBER = 0;
         public WelcomeForm()
         {
             if (SignInForm.USERID == 0)
@@ -40,6 +45,7 @@ namespace banking_app.UI
         private void Init()
         {
             this.accountCreation = new AccountCreation();
+            this.transactionView = new TransactionView();
 
         }
 
@@ -99,8 +105,13 @@ namespace banking_app.UI
             this.txtAccNumber.Text = account.AccountNumber.ToString();
             this.txtAccType.Text = account.AccountType.ToString();
             this.txtBalance.Text = account.Balance.ToString();
-           // List<TransactionDTO> transaction = MainService.GetInstance().GetMovieActorService().GetMovieActors(movie);
-           // this.LoadMovieActorList(actors);
+        }
+
+        private void ClearAccountFields(AccountDTO account)
+        {
+            this.txtAccNumber.Text = "";
+            this.txtAccType.Text = "";
+            this.txtBalance.Text = "";
         }
 
         private void accountCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,6 +128,66 @@ namespace banking_app.UI
                 this.accountCombo.Items.Clear();
                 LoadAccountToCombo();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.currentWorkingAccount = MainService.getInstance().GetAccountService().getAccountByAccountNumber((int)accountCombo.SelectedItem);
+            if (this.currentWorkingAccount.Balance != 0)
+            {
+                MessageBox.Show("Sorry you cannot delete your account when your balance is not 0");
+            } else
+            {
+                MainService.getInstance().GetUserAccountService().UnlinkAllUsersFromAccount(this.currentWorkingAccount.AccountNumber);
+                MainService.getInstance().GetAccountTransactionService().UnlinkAllTransactionsFromAccount(this.currentWorkingAccount.AccountNumber);
+                ClearAccountFields(this.currentWorkingAccount);
+                this.accountCombo.Items.Remove(accountCombo.SelectedItem);
+                
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (accountCombo.SelectedItem == null)
+            {
+                MessageBox.Show("Please select account to proceed transactions");
+            }
+            else
+            {
+                this.currentWorkingAccount = MainService.getInstance().GetAccountService().getAccountByAccountNumber((int)accountCombo.SelectedItem);
+                ACCOUNTNUMBER = this.currentWorkingAccount.AccountNumber;
+                List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(ACCOUNTNUMBER);
+                this.transactionView.OpenModal(transactionList);
+                if(this.transactionView.DialogResult == DialogResult.OK)
+                {
+                    LoadAccountFields(this.currentWorkingAccount);
+                }
+            }
+            
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            List<AccountDTO> accountList = MainService.getInstance().GetUserAccountService().getAllAccountOfUser(SignInForm.USERID);
+            try
+            {
+                MainService.getInstance().GetUserAccountService().UnlinkAllAccountFromUser(SignInForm.USERID); 
+                UserDTO currentUser = MainService.getInstance().GetUserService().getUserById(SignInForm.USERID);
+                MainService.getInstance().GetUserService().DeleteUser(currentUser);
+                MessageBox.Show("Sorry to see you leave, goodbye!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

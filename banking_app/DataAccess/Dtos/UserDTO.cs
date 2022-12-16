@@ -1,4 +1,6 @@
-﻿using banking_app.DataAccess.Interfaces;
+﻿// Paragini Bamania
+
+using banking_app.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

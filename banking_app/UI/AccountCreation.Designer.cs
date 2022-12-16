@@ -75,6 +75,7 @@
             this.comboBoxAccType.Name = "comboBoxAccType";
             this.comboBoxAccType.Size = new System.Drawing.Size(254, 33);
             this.comboBoxAccType.TabIndex = 6;
+            this.comboBoxAccType.SelectedIndexChanged += new System.EventHandler(this.comboBoxAccType_SelectedIndexChanged);
             // 
             // listOfUsers
             // 
