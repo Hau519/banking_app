@@ -1,6 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,23 +23,21 @@ namespace banking_app.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
-            {
-                MessageBox.Show("Please enter email and password to login");
-            }
-            else
-            {
-                string email = this.txtEmail.Text;
-                string password = this.txtPassword.Text;
-                USERID = MainService.getInstance().GetUserService().getUserIdByEmail(email);
-                MainService.getInstance().GetUserService().CheckLogIn(email, password);
-            }
-
             try
-            {   
-                
-                
-       
+            {
+
+                if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    MessageBox.Show("Please enter email and password to login");
+                }
+                else
+                {
+                    string email = this.txtEmail.Text;
+                    string password = this.txtPassword.Text;
+                    USERID = MainService.getInstance().GetUserService().getUserIdByEmail(email);
+                    MainService.getInstance().GetUserService().CheckLogIn(email, password);
+                }
+
             } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);

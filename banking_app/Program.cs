@@ -1,5 +1,3 @@
-//Hyemi Park
-
 using banking_app.Business.Service;
 
 namespace banking_app

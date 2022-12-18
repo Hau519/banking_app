@@ -1,6 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-
-using banking_app.Business.Service;
+﻿using banking_app.Business.Service;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -18,7 +16,7 @@ namespace banking_app.UI
     {
         public DepositView()
         {
-            InitializeComponent();
+           InitializeComponent();
         }
 
         public void OpenModal()
@@ -28,18 +26,25 @@ namespace banking_app.UI
 
         private void btnCreateDepo_Click(object sender, EventArgs e)
         {
-            string currency = (string) this.comboCurrencyDepo.SelectedItem;
-            double amount = double.Parse(txtAmounDepo.Text);
-            TransactionDTO trans = new TransactionDTO("deposit", amount, currency);
-            MainService.getInstance().GetTransactionService().saveNewTransaction(trans);
-            if(MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(trans.Id, WelcomeForm.ACCOUNTNUMBER))
+            try
             {
-                this.DialogResult = DialogResult.OK;
+                string currency = (string)this.comboCurrencyDepo.SelectedItem;
+                double amount = double.Parse(txtAmounDepo.Text);
+                TransactionDTO trans = new TransactionDTO("deposit", amount, currency);
+                MainService.getInstance().GetTransactionService().saveNewTransaction(trans);
+                if (MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(trans.Id, WelcomeForm.ACCOUNTNUMBER))
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Transaction cannot proceed, please try again!");
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
-            else
-            {
-                MessageBox.Show("Transaction cannot proceed, please try again!");
-            }     
+                
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿//Thi Hau Vu
-using banking_app.DataAccess.Contexts;
+﻿using banking_app.DataAccess.Contexts;
 using banking_app.DataAccess.DAOs;
 using banking_app.DataAccess.Dtos;
 using System;

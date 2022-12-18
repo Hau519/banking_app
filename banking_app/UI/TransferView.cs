@@ -1,6 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-
-using banking_app.Business.Service;
+﻿using banking_app.Business.Service;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -38,32 +36,44 @@ namespace banking_app.UI
 
         private void LoadAccountListInCombobox(List<AccountDTO> selectableAccounts)
         {
-            this.comboAccount.Items.Clear();
-            foreach (AccountDTO account in selectableAccounts)
+            try { 
+                this.comboAccount.Items.Clear();
+                foreach (AccountDTO account in selectableAccounts)
+                {
+                    this.comboAccount.Items.Add(account);
+                }
+            }
+            catch (Exception ex)
             {
-                this.comboAccount.Items.Add(account);
+                MessageBox.Show(ex.Message);
             }
 
-           
+
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            string currency = (string)this.comboBoCurrency.SelectedItem;
-            double amount = double.Parse(txtAmount.Text);
-            int accountContraNum = this.selectedAccount.AccountNumber;
-            TransactionDTO transCredit = new TransactionDTO("transfer", amount, currency);
-            MainService.getInstance().GetTransactionService().saveNewTransaction(transCredit);
-            TransactionDTO transDebit = new TransactionDTO("debit", amount, currency);
-            MainService.getInstance().GetTransactionService().saveNewTransaction(transDebit);
+            try {
+                string currency = (string)this.comboBoCurrency.SelectedItem;
+                double amount = double.Parse(txtAmount.Text);
+                int accountContraNum = this.selectedAccount.AccountNumber;
+                TransactionDTO transCredit = new TransactionDTO("transfer", amount, currency);
+                MainService.getInstance().GetTransactionService().saveNewTransaction(transCredit);
+                TransactionDTO transDebit = new TransactionDTO("debit", amount, currency);
+                MainService.getInstance().GetTransactionService().saveNewTransaction(transDebit);
             
-            if (MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(transCredit.Id, WelcomeForm.ACCOUNTNUMBER) && MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(transDebit.Id, accountContraNum))
-            {
-                this.DialogResult = DialogResult.OK;
+                if (MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(transCredit.Id, WelcomeForm.ACCOUNTNUMBER) && MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(transDebit.Id, accountContraNum))
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Transaction cannot proceed, please try again!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Transaction cannot proceed, please try again!");
+                MessageBox.Show(ex.Message);
             }
         }
     }

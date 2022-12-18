@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-////Yulia Samoilovich
-
 using System.Threading.Tasks;
 
 namespace banking_app.Business.Service

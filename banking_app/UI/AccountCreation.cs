@@ -1,6 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-
-using banking_app.Business.Service;
+﻿using banking_app.Business.Service;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -31,28 +29,43 @@ namespace banking_app.UI
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            string accountType = (string) comboBoxAccType.Text;
-            AccountDTO newAccount = new AccountDTO(accountType);
-            MainService.getInstance().GetAccountService().saveNewAccount(newAccount);
-            MainService.getInstance().GetUserAccountService().LinkAccountToUser(SignInForm.USERID, newAccount.AccountNumber);
-            foreach (ListViewItem item in this.listOfUsers.Items)
+            try
             {
-                MainService.getInstance().GetUserAccountService().LinkAccountToUser((int)item.Tag, newAccount.AccountNumber);
-                
+                string accountType = (string)comboBoxAccType.Text;
+                AccountDTO newAccount = new AccountDTO(accountType);
+                MainService.getInstance().GetAccountService().saveNewAccount(newAccount);
+                MainService.getInstance().GetUserAccountService().LinkAccountToUser(SignInForm.USERID, newAccount.AccountNumber);
+                foreach (ListViewItem item in this.listOfUsers.Items)
+                {
+                    if ((int)item.Tag != SignInForm.USERID)
+                    {
+                        MainService.getInstance().GetUserAccountService().LinkAccountToUser((int)item.Tag, newAccount.AccountNumber);
+                    }
+                }
+                this.DialogResult = DialogResult.OK;
             }
-            this.DialogResult = DialogResult.OK;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            this.userSelectorView.OpenModal(MainService.getInstance().GetUserService().GetAllUsers());
-            if(this.userSelectorView.DialogResult == DialogResult.OK)
+            try { 
+                this.userSelectorView.OpenModal(MainService.getInstance().GetUserService().GetAllUsers());
+                if(this.userSelectorView.DialogResult == DialogResult.OK)
+                {
+                    this.selectedUser = this.userSelectorView.GetSelectedUser();
+                    ListViewItem item = new ListViewItem(selectedUser.FullName);
+                    item.Tag = selectedUser.ID;
+                    this.listOfUsers.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
             {
-                this.selectedUser = this.userSelectorView.GetSelectedUser();
-                ListViewItem item = new ListViewItem(selectedUser.FullName);
-                item.Tag = selectedUser.ID;
-                this.listOfUsers.Items.Add(item);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -63,18 +76,24 @@ namespace banking_app.UI
 
         private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-            this.userSelectorView.OpenModal(MainService.getInstance().GetUserService().GetAllUsers());
-            if (this.userSelectorView.DialogResult == DialogResult.OK)
-            {
-                this.selectedUser = this.userSelectorView.GetSelectedUser();
-               
-                foreach(ListViewItem item in this.listOfUsers.Items)
+            try { 
+                this.userSelectorView.OpenModal(MainService.getInstance().GetUserService().GetAllUsers());
+                if (this.userSelectorView.DialogResult == DialogResult.OK)
                 {
-                    if(selectedUser.ID == (int)item.Tag)
+                    this.selectedUser = this.userSelectorView.GetSelectedUser();
+               
+                    foreach(ListViewItem item in this.listOfUsers.Items)
                     {
-                        this.listOfUsers.Items.Remove(item);
+                        if(selectedUser.ID == (int)item.Tag)
+                        {
+                            this.listOfUsers.Items.Remove(item);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

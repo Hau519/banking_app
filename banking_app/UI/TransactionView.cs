@@ -1,5 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-using banking_app.Business.Service;
+﻿using banking_app.Business.Service;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -30,11 +29,17 @@ namespace banking_app.UI
 
         private void btnCreateTrans_Click(object sender, EventArgs e)
         {
-            this.transDepositView.OpenModal();
-            if(this.transDepositView.DialogResult == DialogResult.OK)
+            try {
+                this.transDepositView.OpenModal();
+                if(this.transDepositView.DialogResult == DialogResult.OK)
+                {
+                    List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(WelcomeForm.ACCOUNTNUMBER);
+                    loadGridView(transactionList);
+                }
+            }
+            catch (Exception ex)
             {
-                List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(WelcomeForm.ACCOUNTNUMBER);
-                loadGridView(transactionList);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -62,22 +67,39 @@ namespace banking_app.UI
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-            this.transWithdrawView.OpenModal();
-            if (this.transWithdrawView.DialogResult == DialogResult.OK)
+            try { 
+                this.transWithdrawView.OpenModal();
+                if (this.transWithdrawView.DialogResult == DialogResult.OK)
+                {
+                    List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(WelcomeForm.ACCOUNTNUMBER);
+                    loadGridView(transactionList);
+                }
+            }
+            catch (Exception ex)
             {
-                List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(WelcomeForm.ACCOUNTNUMBER);
-                loadGridView(transactionList);
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
-            this.transTransferView.OpenModal(MainService.getInstance().GetAccountService().GetAllAccounts());
-            if (this.transTransferView.DialogResult == DialogResult.OK)
-            {
-                List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(WelcomeForm.ACCOUNTNUMBER);
-                loadGridView(transactionList);
+            try { 
+                this.transTransferView.OpenModal(MainService.getInstance().GetAccountService().GetAllAccounts());
+                if (this.transTransferView.DialogResult == DialogResult.OK)
+                {
+                    List<TransactionDTO> transactionList = MainService.getInstance().GetAccountTransactionService().getAllTransactionOfAccount(WelcomeForm.ACCOUNTNUMBER);
+                    loadGridView(transactionList);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void TransactionView_Load(object sender, EventArgs e)
+        {
 
         }
     }

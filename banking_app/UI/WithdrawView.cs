@@ -1,6 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-
-using banking_app.Business.Service;
+﻿using banking_app.Business.Service;
 using banking_app.DataAccess.Dtos;
 using System;
 using System.Collections.Generic;
@@ -27,17 +25,23 @@ namespace banking_app.UI
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            string currency = (string)this.comboCurrency.SelectedItem;
-            double amount = double.Parse(txtAmount.Text);
-            TransactionDTO trans = new TransactionDTO("withdraw", amount, currency);
-            MainService.getInstance().GetTransactionService().saveNewTransaction(trans);
-            if (MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(trans.Id, WelcomeForm.ACCOUNTNUMBER))
-            {
-                this.DialogResult = DialogResult.OK;
+            try { 
+                string currency = (string)this.comboCurrency.SelectedItem;
+                double amount = double.Parse(txtAmount.Text);
+                TransactionDTO trans = new TransactionDTO("withdraw", amount, currency);
+                MainService.getInstance().GetTransactionService().saveNewTransaction(trans);
+                if (MainService.getInstance().GetAccountTransactionService().LinkTransactionToAccount(trans.Id, WelcomeForm.ACCOUNTNUMBER))
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Transaction cannot proceed, please try again!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Transaction cannot proceed, please try again!");
+                MessageBox.Show(ex.Message);
             }
         }
     }

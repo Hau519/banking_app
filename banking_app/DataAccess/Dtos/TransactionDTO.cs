@@ -1,6 +1,4 @@
-﻿//Yulia Samoilovich
-
-using banking_app.DataAccess.Interfaces;
+﻿using banking_app.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,6 +21,9 @@ namespace banking_app.DataAccess.Dtos
 
         [Required]
         public string currency { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime transactionDate { get; set; }
 
         public List<AccountTransactionDTO> accountTransaction { get; set; } = null;
 

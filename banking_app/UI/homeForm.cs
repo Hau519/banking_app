@@ -1,6 +1,4 @@
-﻿//Hyemi Park + Thi Hau Vu + Yulia Samoilovich + Paragini Bamania
-
-using banking_app.Business.Service;
+﻿using banking_app.Business.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +26,11 @@ namespace banking_app.UI
         private void button2_Click(object sender, EventArgs e)
         {
             MainService.getInstance().GetUserService().OpenSignInForm();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿//Hyemi Park
+﻿
 
 using banking_app.DataAccess.Contexts;
 using banking_app.DataAccess.DAOs;
